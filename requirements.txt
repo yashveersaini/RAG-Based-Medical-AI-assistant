@@ -1,19 +1,28 @@
+# ── LangChain ecosystem (keep your working versions) ──────────────
 langchain>=0.3.16
-
 langchain-core>=0.3.45
 langchain-community>=0.3.16
 langchain-pinecone>=0.2.13
-langchain-chroma>=0.1.4
 langchain-google-genai>=2.0.0
 langchain-huggingface==1.2.1
 
-# Infrastructure & Processing
-flask>=3.0.3
+# ── FastAPI stack (replaces Flask) ────────────────────────────────
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+python-multipart>=0.0.12
+
+# ── Pydantic (FastAPI uses this internally) ────────────────────────
+pydantic>=2.10.0
+pydantic-settings>=2.7.0
+
 pypdf>=5.4.0
-python-dotenv>=1.0.1
-sentence-transformers>=3.4.1
 pymupdf==1.27.2.2
+python-docx>=1.1.2      
+sentence-transformers>=3.4.1
+python-dotenv>=1.0.1
 
+# ── Pinecone client ────────────────────────────────────────────────
+pinecone>=5.0.0
 
-# Local project link
+# ── Local project link ────────────────────────────────────────────
 -e .
