@@ -1,0 +1,212 @@
+[
+    {
+        "question": "How do antiangina drugs function to alleviate chest pain?",
+        "ground_truth": "Antiangina drugs work by relaxing the blood vessels, which reduces the heart\u2019s workload and increases the amount of oxygen-rich blood reaching the heart. This mechanism helps to relieve the severe chest pain associated with angina pectoris.",
+        "reference_context": "Antiangina drugs are medicines that relieve the symptoms of angina pectoris (severe chest pain). By relaxing the blood vessels, antiangina drugs reduce the heart\u2019s work load and increase the amount of oxygen-rich blood that reaches the heart."
+    },
+    {
+        "question": "What is the procedure for a standard electrocardiography test, and where is it typically performed?",
+        "ground_truth": "Electrodes covered with conducting jelly are placed on the patient\u2019s body to send impulses of the heart to a recorder. This test takes about 10 minutes and is performed in a physician\u2019s office.",
+        "reference_context": "trodes covered with conducting jelly are placed on the patient\u2019s body. They send impulses of the heart to a recorder. The test takes about 10 minutes and is performed in a physician\u2019s office."
+    },
+    {
+        "question": "What is the primary treatment method for agoraphobia and other phobias?",
+        "ground_truth": "The main treatment for agoraphobia and other phobias is cognitive behavioral therapy. This often involves a technique called desensitization, where patients are gradually exposed to fear-triggering situations and learn coping mechanisms.",
+        "reference_context": "The mainstay of treatment for agoraphobia and other phobias is cognitive behavioral therapy. A specific technique that is often employed is called desensitization. The patient is gradually exposed to the situation that usually triggers fear and avoidance, and, with the help of breathing or relaxation techniques, learns to cope with the situation."
+    },
+    {
+        "question": "What is the typical timeframe for amenorrhea to resolve after a person stops taking birth control pills?",
+        "ground_truth": "Amenorrhea experienced after discontinuing birth control pills usually subsides within six to eight weeks, but in some cases, it might take up to a year for periods to resume.",
+        "reference_context": "Amenorrhea that occurs with discontinuing birth control pills usually go away within six to eight weeks, although it may take up to a year."
+    },
+    {
+        "question": "What is the typical timeframe for a boil to heal completely?",
+        "ground_truth": "After a boil forms a head and discharges pus, it generally takes between one and two weeks for it to heal completely.",
+        "reference_context": "It takes between one and two weeks for a boil to heal completely after it comes to a head and discharges pus."
+    },
+    {
+        "question": "What measures can be taken to reduce the risk of HIV transmission following a needle stick injury among healthcare professionals?",
+        "ground_truth": "The risk of HIV transmission from a needle stick can be decreased if the injured healthcare worker receives the anti-retroviral medication AZT in combination with other medications.",
+        "reference_context": "Present studies indicate that the risk of HIV transmission by a needle stick is about one in 250. This rate can be decreased if the injured worker is given AZT, an anti-retroviral medication, in combination with other medication."
+    },
+    {
+        "question": "What is the prognosis for AIDS patients who receive prompt antibiotic treatment for the infection?",
+        "ground_truth": "In most cases, prompt antibiotic treatment cures the infection in patients with AIDS, allowing them to resume normal life. Early diagnosis is crucial for a complete cure.",
+        "reference_context": "In most cases, prompt antibiotic treatment in patients with AIDS cured the infection caused by either variety of the bacteria, and patients may resume normal life. Early diagnosis is crucial to a cure."
+    },
+    {
+        "question": "What are the professional roles and affiliations of Dr. A. Richard Adrouny?",
+        "ground_truth": "Dr. A. Richard Adrouny is a Clinical Assistant Professor of Medicine in the Division of Oncology at Stanford University. He also serves as the Director of Medical Oncology at Community Hospital of Los Gatos-Saratoga in Los Gatos, CA.",
+        "reference_context": "A. Richard Adrouny, M.D., F.A.C.P.\nClinical Assistant Professor of Medicine\nDivision of Oncology\nStanford University\nDirector of Medical Oncology\nCommunity Hospital of Los Gatos-Saratoga\nLos Gatos, CA"
+    },
+    {
+        "question": "What is Andrea Ruskin M.D.'s professional affiliation and where is she located?",
+        "ground_truth": "Andrea Ruskin, M.D. is associated with Whittingham Cancer Center. She is located in Norwalk, CT.",
+        "reference_context": "Andrea Ruskin, M.D.\nWhittingham Cancer Center\nNorwalk, CT"
+    },
+    {
+        "question": "What are some ways essential oil diffusers can contribute to a healthier home environment?",
+        "ground_truth": "Essential oil diffusers can promote a healthier home by dispersing oils with antiseptic qualities, such as eucalyptus and tea tree oil, to disinfect sickrooms. They can also be used with oils like citronella and geranium to repel insects.",
+        "reference_context": "Essential oil diffusers, vaporizers, and light bulb rings can be used to disperse essential oils over a large area. These devices can be particularly effective in aromatherapy that uses essential oils to promote a healthier home environment. For example, eucalyptus and tea tree oil are known for their antiseptic qualities and are frequently used to disinfect sickrooms, and citronella and geranium can be useful in repelling insects."
+    },
+    {
+        "question": "How does the DSM-IV define a manic episode?",
+        "ground_truth": "The DSM-IV describes a manic episode as an abnormally elevated or irritable mood that lasts for at least one week and is characterized by at least three specific mania symptoms.",
+        "reference_context": "DSM-IV describes a manic episode as an abnormally elevated or irritable mood lasting a period of at least one week that is distinguished by at least three of the mania symptoms."
+    },
+    {
+        "question": "What basic language functions are identified as being affected by damage to the left hemisphere of the brain?",
+        "ground_truth": "Damage to the left hemisphere can affect one or more basic language functions, including speech, naming, repetition, hearing comprehension, reading, and writing.",
+        "reference_context": "This damage affects one or more of the basic language functions: speech, naming (the ability to identify an object, color, or other item with an appropriate word or term), repetition (the ability to repeat words, phrases, and sentences), hearing comprehension (the ability to understand spoken language), reading (the ability to understand written words and their meaning), and writing (the ability to communicate and record events with text)."
+    },
+    {
+        "question": "What health conditions are associated with children's exposure to environmental tobacco smoke?",
+        "ground_truth": "Children exposed to environmental tobacco smoke are at risk for sudden infant death syndrome, low birth weight, asthma, middle ear disease, pneumonia, cough, and upper respiratory infections.",
+        "reference_context": "in the United States, 43% of children aged 2-11 years are exposed to environmental tobacco smoke, which has been implicated in sudden infant death syndrome, low birth weight, asthma, middle ear disease, pneumonia, cough, and upper respiratory infection."
+    },
+    {
+        "question": "Why are adrenal gland scans not recommended for pregnant women?",
+        "ground_truth": "Adrenal gland scans are not recommended for pregnant women because of the potential harm to the developing fetus. A pregnant woman should discuss the risks and benefits of the procedure with her doctor.",
+        "reference_context": "Adrenal gland scans are not recommended for pregnant women because of the potential harm to the developing fetus. A pregnant woman should discuss with her doctor the risks of the procedure against the benefits of the information it can provide in evaluating her individual medical situation."
+    },
+    {
+        "question": "What is the primary difference in how the heart chambers behave during atrial fibrillation compared to atrial flutter?",
+        "ground_truth": "During atrial fibrillation, the atria quiver chaotically while the ventricles beat irregularly. In contrast, during atrial flutter, the atria beat regularly but at a faster rate than the ventricles.",
+        "reference_context": "In atrial fibrillation, the atria \u201cquiver\u201d chaotically and the ventricles beat irregularly. In atrial flutter, the atria beat regularly and faster than the ventricles."
+    },
+    {
+        "question": "What is the central nervous system?",
+        "ground_truth": "The brain, spinal cord and the nerves throughout the body.",
+        "reference_context": "Central nervous system\u2014The brain, spinal cord and the nerves throughout the body."
+    },
+    {
+        "question": "What instruments are used to deliver radiation in stereotactic radiosurgery?",
+        "ground_truth": "The instruments used include the gamma knife, adapted linear accelerator (LINAC), and cyclotron.",
+        "reference_context": "Instruments used for delivery of radiation include the gamma knife, adapted linear accelerator (LINAC), and cyclotron."
+    },
+    {
+        "question": "What determines the pathologic stage in breast cancer treatment?",
+        "ground_truth": "The pathologic stage is determined after surgical treatment and defines the local parameters.",
+        "reference_context": "The pathologic stage is determined after surgical treatment absolutely defines the local parameters."
+    },
+    {
+        "question": "What is the function of hemoglobin in red blood cells?",
+        "ground_truth": "Hemoglobin is the protein-iron compound in red blood cells that enables them to transport oxygen from the lungs to the body's tissues.",
+        "reference_context": "Hemoglobin (Hgb) is the protein-iron compound in the red blood cells that enables them to transport oxygen. The red cells, the most numerous of the cellular elements, carry oxygen from the lungs to the body\u2019s tissues."
+    },
+    {
+        "question": "What diagnostic methods do Ayurvedic physicians use to identify dosha imbalances?",
+        "ground_truth": "Ayurvedic physicians use long questionnaires and interviews to determine a person's dosha patterns and physical and psychological histories, and they also observe the pulse, tongue, face, lips, eyes, and fingernails for abnormalities or patterns that indicate deeper internal problems.",
+        "reference_context": "To diagnose problems, Ayurvedic physicians often use long questionnaires and interviews to determine a person's dosha patterns and physical and psychological histories. Ayurvedic physicians also intricately observe the pulse, tongue, face, lips, eyes, and fingernails for abnormalities or patterns that they believe can indicate deeper problems in the internal systems."
+    },
+    {
+        "question": "When is the nipple and areolar complex typically recreated during breast reconstruction?",
+        "ground_truth": "The nipple and areolar complex are usually recreated several months after the mound is created, to allow swelling to go down.",
+        "reference_context": "The nipple and areolar complex (darker area around the nipple) are recreated. This is usually done several months after the mound is created, to allow swelling to go down."
+    },
+    {
+        "question": "What is the mechanism of action for thiazolidinedione drugs like rosiglitazone and pioglitazone?",
+        "ground_truth": "They act by both reducing glucose production in the liver, and increasing insulin dependent glucose uptake in muscle cells. They do not increase insulin production.",
+        "reference_context": "Rosiglitazone (Avandia) and pioglitazone (Actos) and the members of the thiazolidinedione class. They act by both reducing glucose production in the liver, and increasing insulin dependent glucose uptake in muscle cells. They do not increase insulin production."
+    },
+    {
+        "question": "What lifestyle and dietary changes may help slow the development of aneurysms?",
+        "ground_truth": "Lifestyle and dietary changes that help lower blood pressure and the amount of fat in the blood stream may slow the development of aneurysms.",
+        "reference_context": "Although no definite prevention exists, lifestyle and dietary changes that help lower blood pressure and the amount of fat in the blood stream may slow the development of aneurysms."
+    },
+    {
+        "question": "How does kidney disease affect bone health?",
+        "ground_truth": "The kidneys produce vitamin D, which helps the body absorb calcium and keeps bones strong. For patients with kidney failure, bones may become brittle.",
+        "reference_context": "bone and joint problems. The kidneys produce vitamin D, which helps the body absorb calcium and keeps bones strong. For patients with kidney failure, bones may become brittle."
+    },
+    {
+        "question": "Which organs participate in maintaining the carbonic acid-bicarbonate balance in the blood?",
+        "ground_truth": "The lungs and kidneys both participate in maintaining the carbonic acid-bicarbonate balance, with the lungs controlling the carbonic acid level and the kidneys regulating the bicarbonate.",
+        "reference_context": "The lungs and kidneys both participate in maintaining the carbonic acid-bicarbonate balance. The lungs control the carbonic acid level and the kidneys regulate the bicarbonate."
+    },
+    {
+        "question": "What is the prognosis for a patient with brain abscess?",
+        "ground_truth": "Even with prompt treatment, brain abscess is fatal in about 20% of cases. About half of those who survive have some residual neurological problems, including seizures in many patients.",
+        "reference_context": "Even with prompt treatment, brain abscess is fatal in about 20% of cases. About half of those who survive have some residual neurological problems, including seizures in many patients."
+    },
+    {
+        "question": "What pancreatic conditions can be identified using ultrasound?",
+        "ground_truth": "Inflammation and malformation of the pancreas are readily identified by ultrasound, as are pancreatic stones (calculi), which can disrupt proper functioning.",
+        "reference_context": "Pancreatic disease. Inflammation and malformation of the pancreas are readily identified by ultrasound, as are pancreatic stones (calculi), which can disrupt proper functioning."
+    },
+    {
+        "question": "What special precaution might a physician recommend for someone taking beta blockers?",
+        "ground_truth": "Physicians may advise people taking beta blockers to wear or carry medical identification indicating that they are taking this medicine.",
+        "reference_context": "Physicians may advise people taking beta blockers to wear or carry medical identification indicating that they are taking this medicine."
+    },
+    {
+        "question": "What does the blood donation process involve?",
+        "ground_truth": "Blood donation refers to the process of collecting, testing, preparing, and storing blood and blood components.",
+        "reference_context": "Blood donation refers to the process of collecting, testing, preparing, and storing blood and blood components."
+    },
+    {
+        "question": "What danger is associated with squeezing boils around the mouth or nose?",
+        "ground_truth": "Infections in these areas can be carried to the brain.",
+        "reference_context": "It is especially important to avoid squeezing boils around the mouth or nose because infections in these areas can be carried to the brain."
+    },
+    {
+        "question": "What beverages may help prevent bladder stones?",
+        "ground_truth": "The consumption of at least six to eight eight-ounce glasses of water per day and/or the regular consumption of cranberry juice may help prevent bladder stones.",
+        "reference_context": "The consumption of at least six to eight eight-ounce glasses of water per day and/or the regular consumption of cranberry juice may help prevent bladder stones."
+    },
+    {
+        "question": "What treatment approach is recommended for infant botulism, and why are antibiotics generally avoided?",
+        "ground_truth": "Treatment for infants usually involves intensive respiratory support and tube feeding for weeks or even months. Antibiotics are not effective for preventing or treating botulism, and antibiotic use is discouraged for infants because dying bacteria could potentially release more toxin into a baby's system.",
+        "reference_context": "Treatment for infants usually involves intensive respiratory support and tube feeding for weeks or even months. Antibiotics are not effective for preventing or treating botulism. In fact, antibiotic use is discouraged for infants because dying bacteria could potentially release more toxin into a baby's system."
+    },
+    {
+        "question": "What is Parkinson's disease and what are its main characteristics?",
+        "ground_truth": "Parkinson's disease is a neurological disorder caused by deficiency of dopamine, a neurotransmitter that helps transmit messages between nerves in the brain. It is characterized by muscle tremor or palsy and rigid movements.",
+        "reference_context": "Parkinson's disease\u2014A neurological disorder caused by deficiency of dopamine, a neurotransmitter, that is a chemical that assists in transmitting messages between the nerves within the brain. It is characterized by muscle tremor or palsy and rigid movements."
+    },
+    {
+        "question": "What is the critical time window for initiating antiviral therapy to ensure effectiveness?",
+        "ground_truth": "Antiviral therapy must normally be initiated within 48 hours of the onset of an infection to provide any benefit.",
+        "reference_context": "Antiviral therapy must normally be initiated within 48 hours of the onset of an infection to provide any benefit."
+    },
+    {
+        "question": "What percentage of breast biopsies result in a benign pathology report?",
+        "ground_truth": "Studies have demonstrated that approximately 80% of all breast biopsies result in a benign pathology report.",
+        "reference_context": "Studies have demonstrated that approximately 80% of all breast biopsies result in a benign pathology report."
+    },
+    {
+        "question": "What serious condition can develop in children with flu or chicken pox who take bismuth subsalicylate?",
+        "ground_truth": "Reye's syndrome, a life-threatening condition that affects the liver and central nervous system.",
+        "reference_context": "Children with flu or chicken pox should not be given bismuth subsalicylate. It can lead to Reye's syndrome, a life-threatening condition that affects the liver and central nervous system."
+    },
+    {
+        "question": "What chemotherapy drugs are commonly used to treat brain tumors?",
+        "ground_truth": "The usual chemotherapy regimen for a brain tumor is a combination approach, most commonly using procarbazine, CCNU, and vincristine.",
+        "reference_context": "The usual chemotherapy regimen for a brain tumor is a combination approach, most commonly using procarbazine, CCNU, and vincristine."
+    },
+    {
+        "question": "What percentage of anorexia nervosa patients are female?",
+        "ground_truth": "Over 90% of patients diagnosed with the disorder as of 1998 are female.",
+        "reference_context": "Over 90% of patients diagnosed with the disorder as of 1998 are female."
+    },
+    {
+        "question": "What time of day should ACTH blood samples be drawn for consistent follow-up testing?",
+        "ground_truth": "For sequential follow-up, a blood sample analyzed for ACTH should always be drawn at the same time each day.",
+        "reference_context": "For sequential follow-up, a blood sample analyzed for ACTH should always be drawn at the same time each day."
+    },
+    {
+        "question": "Can Bell's palsy be prevented?",
+        "ground_truth": "No, Bell's palsy is not preventable.",
+        "reference_context": "Prevention\nBell\u2019s palsy is not preventable."
+    },
+    {
+        "question": "How are anorectal fissures treated?",
+        "ground_truth": "Fissures are treated with stool softeners to eliminate stress during bowel movements, allowing the fissure to heal. If the fissure doesn't heal, surgery is required.",
+        "reference_context": "In the case of fissures, treatment involves stool softeners that eliminate stress on the fissure during bowel movements, which allows the fissure to heal. If the fissure doesn't heal, surgery is required."
+    },
+    {
+        "question": "What is a 'wheal and flare' reaction?",
+        "ground_truth": "It is characterized by the eruption of a reddened, itching spot on the skin that develops in about 15-20 minutes after the skin test.",
+        "reference_context": "A 'wheal and flare' reaction is characterized by the eruption of a reddened, itching spot on the skin. Some patients with ABPA will develop the so-called late reaction to the skin test, in which a red, sore, swollen area develops about six to eight hours after the initial reaction."
+    }
+]
