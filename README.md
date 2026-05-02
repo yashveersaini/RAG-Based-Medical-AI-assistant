@@ -22,36 +22,7 @@ General-purpose LLMs hallucinate on domain-specific medical queries — they gen
 ---
 
 ## 🏗️ System Architecture
-
-```
-User Query
-    │
-    ▼
-┌─────────────────────────────────────────┐
-│           Hybrid Retrieval              │
-│  BM25 Sparse  ──┐                       │
-│                 ├──► EnsembleRetriever  │
-│  Vector Dense  ──┘    (RRF Fusion)      │
-└────────────────────┬────────────────────┘
-                     │ top-20 candidates
-                     ▼
-            ┌─────────────────┐
-            │  Reranker        │
-            │  FlashRank /     │
-            │  Cohere v3       │
-            └───────┬─────────┘
-                    │ top-5 chunks
-                    ▼
-         ┌──────────────────────┐
-         │  Gemini 2.5 Flash    │
-         │  + Prompt Template   │
-         │  + Citation Tracking │
-         └──────────┬───────────┘
-                    │
-                    ▼
-         Structured Answer + Sources
-```
-
+<img width="1024" height="1536" alt="ChatGPT Image May 2, 2026, 01_58_57 PM" src="https://github.com/user-attachments/assets/caea7257-aca1-462a-b7dd-df02df405f5f" />
 ---
 
 ## ⚙️ Technical Stack
