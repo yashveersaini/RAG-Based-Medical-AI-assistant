@@ -2,6 +2,10 @@
 
 > An end-to-end production-grade RAG chatbot that answers medical questions using a curated knowledge base — with hybrid retrieval, reranking, citation tracking, and RAGAS-based quality evaluation.
 
+<img width="1888" height="820" alt="image" src="https://github.com/user-attachments/assets/6aab3889-93c9-4884-85af-82a377ab1569" />
+<br><br>
+<img width="1919" height="823" alt="image" src="https://github.com/user-attachments/assets/d5efecde-a42f-440b-abaf-7d9cbfc16470" />
+
 ---
 
 ## 📌 One-Line Summary
@@ -103,6 +107,15 @@ Results are persisted to SQLite — enabling A/B comparison between retrieval st
 | Hybrid + Reranking | **0.864** | **0.841** | **0.812** | **0.827** |
 
 > Hybrid retrieval + reranking improved RAGAS faithfulness by **16.3%** over baseline vector-only search.
+
+### User friendly UI
+<img width="1919" height="818" alt="image" src="https://github.com/user-attachments/assets/f48a114b-759d-48c5-8a18-4c7702280d4f" /><br>
+
+### Chatting interface
+<img width="1916" height="816" alt="image" src="https://github.com/user-attachments/assets/330bebfc-8a3d-453c-a0bf-fd9bdec660a9" /><br>
+
+### Can view sources of response
+<img width="1513" height="751" alt="image" src="https://github.com/user-attachments/assets/ff44b17f-43c5-48c2-a3ad-3ea0ae6bc0fd" />
 
 ---
 
