@@ -22,7 +22,9 @@ General-purpose LLMs hallucinate on domain-specific medical queries — they gen
 ---
 
 ## 🏗️ System Architecture
-<img width="1024" height="1536" alt="ChatGPT Image May 2, 2026, 01_58_57 PM" src="https://github.com/user-attachments/assets/caea7257-aca1-462a-b7dd-df02df405f5f" />
+<div align="center">
+  <img width="400" height="450" alt="architecture" src="https://github.com/user-attachments/assets/c1544a08-168c-415b-a327-0cfbf3821e2b" />
+</div>
 ---
 
 ## ⚙️ Technical Stack
