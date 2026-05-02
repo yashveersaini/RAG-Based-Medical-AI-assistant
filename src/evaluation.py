@@ -6,6 +6,8 @@ from typing import List
 from datasets import Dataset
 from ragas import evaluate
 from ragas.metrics import faithfulness, answer_relevancy, context_precision, context_recall
+from ragas.cache import DiskCacheBackend
+from ragas.llms import LangchainLLMWrapper
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_core.documents import Document
@@ -13,7 +15,6 @@ from config import settings
 from src.prompt import qa_generation_prompt
 import time  
 import random
-from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -25,17 +26,10 @@ def generate_test_dataset(chunks: List[Document], num_questions: int = 100) -> L
     """
     Generates Q&A pairs and saves to JSON after EVERY successful generation.
     """
-    # llm = ChatGoogleGenerativeAI(
-    #     model="gemini-2.5-flash",
-    #     google_api_key=settings.gemini_api_key
-    # )
-
-    llm = HuggingFaceEndpoint(
-        repo_id="MiniMaxAI/MiniMax-M2.5",
-        task="text-generation"
+    llm = ChatGoogleGenerativeAI(
+        model="gemini-2.5-flash",
+        google_api_key=settings.gemini_api_key
     )
-
-    model = ChatHuggingFace(llm=llm)
 
     sampled_chunks = random.sample(chunks, min(num_questions, len(chunks)))
     
@@ -66,7 +60,7 @@ def generate_test_dataset(chunks: List[Document], num_questions: int = 100) -> L
         prompt = qa_generation_prompt(current_chunk.page_content)
 
         try:
-            response = model.invoke(prompt)
+            response = llm.invoke(prompt)
             content = response.content.replace("```json", "").replace("```", "").strip()
             qa = json.loads(content)
 
@@ -99,54 +93,90 @@ def generate_test_dataset(chunks: List[Document], num_questions: int = 100) -> L
 
     return test_data
 
+
 # ── 2. Run Pipeline & Collect Results ─────────────────────────────
 
 def run_evaluation_pipeline(test_data: List[dict], retriever, chain) -> List[dict]:
-    """Runs the actual RAG pipeline to get answers for evaluation."""
-    results = []
+    """Runs the actual RAG pipeline to get answers for evaluation with resume support."""
     
-    for i, item in enumerate(test_data):
+    os.makedirs('data', exist_ok=True)
+    file_path = 'data/retriever_result.json'
+    
+    # 1. Load existing results if file exists
+    if os.path.exists(file_path):
+        with open(file_path, 'r', encoding='utf-8') as f:
+            results = json.load(f)
+        print(f"Resuming from {len(results)} already processed items...")
+    else:
+        results = []
+
+    start_index = len(results)
+
+    embeddings = HuggingFaceEmbeddings(model_name=settings.embed_model)
+
+    # 2. Continue loop from where it stopped
+    for i in range(start_index, len(test_data)):
+        item = test_data[i]
         print(f"Processing question {i+1}/{len(test_data)}")
-        
-        # 1. Retrieve
-        docs = retriever.invoke(item["question"])
-        contexts = [doc.page_content for doc in docs]
-        
-        # 2. Format context for the chain (matches your main script)
-        formatted_context = "\n\n".join([f"Doc {j+1}: {c}" for j, c in enumerate(contexts)])
-        
-        # 3. Generate Answer
-        response = chain.invoke({"context": formatted_context, "query": item["question"]})
-        
-        results.append({
-            "question": item["question"],
-            "answer": response.content,      # What LLM generated
-            "contexts": contexts,            # What retriever found
-            "ground_truth": item["ground_truth"] # What was expected
-        })
-        
+
+        try:
+            # Retrieve
+            docs = retriever(item["question"], embeddings)
+            contexts = [doc.page_content for doc in docs]
+
+            # Format context
+            formatted_context = "\n\n".join([f"Doc {j+1}: {c}" for j, c in enumerate(contexts)])
+
+            # Generate answer
+            response = chain.invoke({"context": formatted_context, "query": item["question"]})
+            time.sleep(20)  # to handle limit of gemini model
+
+            result = {
+                "question": item["question"],
+                "answer": response.content,
+                "contexts": contexts,
+                "ground_truth": item["ground_truth"]
+            }
+
+            results.append(result)
+
+            # 3. Save after each iteration (IMPORTANT)
+            with open(file_path, 'w', encoding='utf-8') as file:
+                json.dump(results, file, indent=4, ensure_ascii=False)
+
+        except Exception as e:
+            print(f"Error at index {i}: {e}")
+            break  
+
     return results
+
 
 # ── 3. Score with RAGAS ───────────────────────────────────────────
 
-def evaluate_ragas(results: List[dict]) -> dict:
-    """Scores the results using RAGAS metrics."""
+
+def evaluate_ragas(results: list[dict]) -> dict:
     dataset = Dataset.from_list(results)
     
-    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+    # Initialize the Disk Cache
+    # This creates a '.cache' folder in your project directory
+    cacher = DiskCacheBackend() 
+    
+    # Wrap your LLM with the cacher
+    base_llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+    llm = LangchainLLMWrapper(base_llm, cache=cacher)
+    
     embeddings = HuggingFaceEmbeddings(model_name=settings.embed_model)
 
-    print("Calculating RAGAS scores...")
     result = evaluate(
         dataset=dataset,
         metrics=[faithfulness, answer_relevancy, context_precision, context_recall],
         llm=llm,
         embeddings=embeddings,
+        batch_size=2 # Keep this low for Free Tier
     )
     
-    # Clean output dictionary
-    scores = {k: round(float(v), 4) for k, v in result.items()}
-    return scores
+    return {k: round(float(v), 4) for k, v in result.items()}
+
 
 # ── 4. JSON-Based Result Saving (Replaces SQLite) ─────────────────
 

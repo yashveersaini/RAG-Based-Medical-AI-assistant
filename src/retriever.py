@@ -3,6 +3,7 @@ from langchain_pinecone import PineconeVectorStore
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.retrievers import BM25Retriever
 from langchain_classic.retrievers import EnsembleRetriever, ContextualCompressionRetriever
+
 from langchain_cohere import CohereRerank
 from config import settings
 
@@ -10,13 +11,14 @@ from config import settings
 os.environ["PINECONE_API_KEY"] = settings.pinecone_api_key
 os.environ["COHERE_API_KEY"] = settings.cohere_api_key
 
-def get_hybrid_retriever(query: str):
+def get_hybrid_retriever(query: str, embeddings=None):
     """
     Standardizes retrieval for your specific Pinecone metadata:
     {chunk_index: int, page: int, source: str}
     """
     # 1. Initialize Embeddings
-    embeddings = HuggingFaceEmbeddings(model_name=settings.embed_model)
+    if not embeddings:
+        embeddings = HuggingFaceEmbeddings(model_name=settings.embed_model)
     
     # 2. Setup Vector Store Retriever
     vectorstore = PineconeVectorStore(

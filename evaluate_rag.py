@@ -43,9 +43,9 @@ def get_rag_chain():
         input_variables=['context', 'query']
     )
 
-    # Use the model version stable in 2026 (Gemini 2.0 or 2.5 Flash)
+    # Use the model version stable in 2026 
     model = ChatGoogleGenerativeAI(
-        model='gemini-2.0-flash', 
+        model='gemini-2.5-flash', 
         google_api_key=settings.gemini_api_key
     )
 
@@ -75,7 +75,22 @@ def main():
     # 3. Run Evaluation Pipeline
     # This calls the LLM and Retriever for every question in your JSON
     print(f"Running pipeline on {len(test_data)} questions...")
-    results = run_evaluation_pipeline(test_data, retriever, chain)
+
+    result_path = "data/retriever_result.json"
+
+    if os.path.exists(result_path):
+        print("Loading existing results from file...")
+        with open(result_path, "r", encoding="utf-8") as f:
+            results = json.load(f) 
+    else:
+        print("No cached results found. Running pipeline...")
+        results = run_evaluation_pipeline(test_data, retriever, chain)
+
+        # Save results
+        os.makedirs("data", exist_ok=True)
+        with open(result_path, "w", encoding="utf-8") as f:
+            json.dump(results, f, indent=4, ensure_ascii=False)
+
 
     # 4. Score with RAGAS
     print("Calculating RAGAS metrics...")

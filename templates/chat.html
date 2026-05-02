@@ -1,81 +1,771 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <!DOCTYPE html>
-<html>
-	<head>
-		<title>Chatbot</title>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}"/>
-	</head>
-	
-	
-	<body>
-		<div class="container-fluid h-100">
-			<div class="row justify-content-center h-100">		
-				<div class="col-md-8 col-xl-6 chat">
-					<div class="card">
-						<div class="card-header msg_head">
-							<div class="d-flex bd-highlight">
-								<div class="img_cont">
-									<img src="https://cdn-icons-png.flaticon.com/512/387/387569.png" class="rounded-circle user_img">
-									<!-- <img src="https://www.prdistribution.com/spirit/uploads/pressreleases/2019/newsreleases/d83341deb75c4c4f6b113f27b1e42cd8-chatbot-florence-already-helps-thousands-of-patients-to-remember-their-medication.png" class="rounded-circle user_img"> -->
-									<span class="online_icon"></span>
-								</div>
-								<div class="user_info">
-									<span>Medical Chatbot</span>
-									<p>Ask me anything!</p>
-								</div>
-							</div>
-						</div>
-						<div id="messageFormeight" class="card-body msg_card_body">
-							
-							
-						</div>
-						<div class="card-footer">
-							<form id="messageArea" class="input-group">
-                                <input type="text" id="text" name="msg" placeholder="Type your message..." autocomplete="off" class="form-control type_msg" required/>
-								<div class="input-group-append">
-									<button type="submit" id="send" class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></button>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<script>
-			$(document).ready(function() {
-				$("#messageArea").on("submit", function(event) {
-					const date = new Date();
-					const hour = date.getHours();
-					const minute = date.getMinutes();
-					const str_time = hour+":"+minute;
-					var rawText = $("#text").val();
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MedAssist — Chat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1117;
+    --ink2: #3a3d4a;
+    --muted: #7a7f8e;
+    --line: #e4e6ec;
+    --bg: #f7f8fc;
+    --white: #ffffff;
+    --accent: #1a6b4a;
+    --accent-lt: #e8f4ef;
+    --sidebar-w: 260px;
+  }
 
-					var userHtml = '<div class="d-flex justify-content-end mb-4"><div class="msg_cotainer_send">' + rawText + '<span class="msg_time_send">'+ str_time + '</span></div><div class="img_cont_msg"><img src="https://i.ibb.co/d5b84Xw/Untitled-design.png" class="rounded-circle user_img_msg"></div></div>';
-					
-					$("#text").val("");
-					$("#messageFormeight").append(userHtml);
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-					$.ajax({
-						data: {
-							msg: rawText,	
-						},
-						type: "POST",
-						url: "/get",
-					}).done(function(data) {
-						var botHtml = '<div class="d-flex justify-content-start mb-4"><div class="img_cont_msg"><img src="https://cdn-icons-png.flaticon.com/512/387/387569.png" class="rounded-circle user_img_msg"></div><div class="msg_cotainer">' + data + '<span class="msg_time">' + str_time + '</span></div></div>';
-						$("#messageFormeight").append($.parseHTML(botHtml));
-					});
-					event.preventDefault();
-				});
-			});
-		</script>
-        
-    </body>
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-w);
+    background: var(--white);
+    border-right: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  .sidebar-header {
+    padding: 16px;
+    border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Instrument Serif', serif;
+    font-size: 18px;
+    color: var(--ink);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .logo-dot { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; }
+
+  .btn-new {
+    padding: 6px 12px;
+    background: var(--ink);
+    color: white; border: none;
+    border-radius: 7px;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background .15s;
+  }
+
+  .btn-new:hover { background: var(--ink2); }
+
+  .sidebar-section {
+    padding: 12px 16px 6px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .sessions-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 4px 8px;
+  }
+
+  .session-item {
+    padding: 9px 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--ink2);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 6px;
+    transition: background .1s;
+    margin-bottom: 2px;
+  }
+
+  .session-item:hover { background: var(--bg); }
+  .session-item.active { background: var(--accent-lt); color: var(--accent); }
+
+  .session-title {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .session-del {
+    opacity: 0;
+    background: none; border: none;
+    color: var(--muted); cursor: pointer;
+    font-size: 14px; padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  .session-item:hover .session-del { opacity: 1; }
+  .session-del:hover { color: #c84b2f; }
+
+  .guest-notice {
+    margin: 8px;
+    padding: 12px;
+    background: var(--bg);
+    border-radius: 10px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .guest-notice a {
+    color: var(--accent);
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .sidebar-footer {
+    border-top: 1px solid var(--line);
+    padding: 12px;
+  }
+
+  .user-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  .user-avatar {
+    width: 30px; height: 30px;
+    background: var(--ink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 500; color: white;
+    flex-shrink: 0;
+  }
+
+  .user-name { font-size: 13px; font-weight: 500; flex: 1; }
+
+  .btn-logout {
+    background: none; border: none;
+    color: var(--muted); font-size: 12px;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-logout:hover { color: #c84b2f; }
+
+  /* ── MAIN CHAT ── */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .chat-header {
+    height: 56px;
+    border-bottom: 1px solid var(--line);
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--white);
+    flex-shrink: 0;
+  }
+
+  .chat-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink2);
+  }
+
+  .header-badge {
+    font-size: 11px;
+    padding: 3px 10px;
+    background: var(--accent-lt);
+    color: var(--accent);
+    border-radius: 20px;
+    font-weight: 500;
+  }
+
+  /* ── MESSAGES ── */
+  .messages-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Empty state */
+  .empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .empty-icon {
+    width: 56px; height: 56px;
+    background: var(--accent-lt);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+    margin-bottom: 16px;
+  }
+
+  .empty-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 22px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .empty-sub {
+    font-size: 14px; color: var(--muted);
+    margin-bottom: 28px; max-width: 380px; line-height: 1.6;
+  }
+
+  .suggestions {
+    display: flex; flex-direction: column; gap: 8px;
+    width: 100%; max-width: 480px;
+  }
+
+  .suggestion {
+    padding: 12px 16px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 13px;
+    color: var(--ink2);
+    cursor: pointer;
+    text-align: left;
+    transition: all .15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .suggestion:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-lt);
+  }
+
+  /* Message bubbles */
+  .msg { display: flex; gap: 12px; max-width: 800px; }
+  .msg.user { flex-direction: row-reverse; align-self: flex-end; }
+
+  .msg-avatar {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 500;
+    flex-shrink: 0; margin-top: 2px;
+  }
+
+  .msg.assistant .msg-avatar { background: var(--accent); color: white; }
+  .msg.user .msg-avatar { background: var(--ink); color: white; }
+
+  .msg-content { flex: 1; }
+
+  .msg-bubble {
+    padding: 14px 18px;
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .msg.user .msg-bubble {
+    background: var(--ink);
+    color: white;
+    border-radius: 14px 14px 4px 14px;
+  }
+
+  .msg.assistant .msg-bubble {
+    background: var(--white);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    border-radius: 14px 14px 14px 4px;
+  }
+
+  /* Markdown-like formatting inside assistant bubble */
+  .msg-bubble strong { font-weight: 500; }
+  .msg-bubble br + br { display: none; }
+
+  /* Sources */
+  .sources-toggle {
+    margin-top: 8px;
+    padding: 6px 12px;
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .15s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+
+  .sources-toggle:hover { border-color: var(--accent); color: var(--accent); }
+
+  .sources-panel {
+    margin-top: 8px;
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .sources-panel.open { display: flex; }
+
+  .source-chip {
+    padding: 8px 12px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--ink2);
+    line-height: 1.5;
+  }
+
+  .source-chip-header {
+    font-weight: 500;
+    color: var(--accent);
+    margin-bottom: 3px;
+  }
+
+  /* Typing indicator */
+  .typing-indicator {
+    display: flex; align-items: center; gap: 4px;
+    padding: 14px 18px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 14px 14px 14px 4px;
+    width: fit-content;
+  }
+
+  .typing-dot {
+    width: 7px; height: 7px;
+    background: var(--muted);
+    border-radius: 50%;
+    animation: typingBounce .9s infinite;
+  }
+
+  .typing-dot:nth-child(2) { animation-delay: .15s; }
+  .typing-dot:nth-child(3) { animation-delay: .3s; }
+
+  @keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-5px); }
+  }
+
+  /* ── INPUT AREA ── */
+  .input-area {
+    padding: 16px 24px 20px;
+    background: var(--white);
+    border-top: 1px solid var(--line);
+    flex-shrink: 0;
+  }
+
+  .input-box {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 10px 12px;
+    transition: border-color .15s;
+  }
+
+  .input-box:focus-within { border-color: var(--accent); }
+
+  textarea {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--ink);
+    resize: none;
+    outline: none;
+    line-height: 1.6;
+    max-height: 120px;
+    min-height: 24px;
+  }
+
+  textarea::placeholder { color: var(--muted); }
+
+  .btn-send {
+    width: 34px; height: 34px;
+    background: var(--ink);
+    color: white; border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    transition: background .15s;
+  }
+
+  .btn-send:hover { background: var(--ink2); }
+  .btn-send:disabled { background: var(--line); cursor: not-allowed; }
+
+  .input-hint {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 8px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <a href="/" class="logo"><div class="logo-dot"></div>MedAssist</a>
+    <button class="btn-new" onclick="newChat()">+ New</button>
+  </div>
+
+  <!-- shown only when logged in -->
+  <div id="sessionSection" style="display:none">
+    <div class="sidebar-section">History</div>
+    <div class="sessions-list" id="sessionsList"></div>
+  </div>
+
+  <!-- shown when guest -->
+  <div id="guestNotice" class="guest-notice" style="display:none">
+    <p>Sign in to save your chat history and ask follow-up questions across sessions.</p>
+    <br>
+    <a href="/">Sign in or create account →</a>
+  </div>
+
+  <div class="sidebar-footer" id="sidebarFooter"></div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="chat-header">
+    <span class="chat-title" id="chatTitle">Medical Assistant</span>
+    <span class="header-badge">Powered by Gemini + RAG</span>
+  </div>
+
+  <div class="messages-area" id="messagesArea">
+    <!-- Empty state shown initially -->
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">🩺</div>
+      <div class="empty-title">Ask me anything medical</div>
+      <div class="empty-sub">I'll search the medical knowledge base and give you a structured, evidence-based answer with citations.</div>
+      <div class="suggestions">
+        <button class="suggestion" onclick="sendSuggestion(this)">What are the symptoms and treatment of hypertension?</button>
+        <button class="suggestion" onclick="sendSuggestion(this)">Explain the causes and risk factors of Type 2 Diabetes</button>
+        <button class="suggestion" onclick="sendSuggestion(this)">What is the difference between Type 1 and Type 2 Diabetes?</button>
+        <button class="suggestion" onclick="sendSuggestion(this)">What are common causes of chest pain?</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-area">
+    <div class="input-box">
+      <textarea
+        id="queryInput"
+        placeholder="Ask a medical question..."
+        rows="1"
+        onkeydown="handleKey(event)"
+        oninput="autoResize(this)"
+      ></textarea>
+      <button class="btn-send" id="sendBtn" onclick="sendMessage()">↑</button>
+    </div>
+    <div class="input-hint">Medical information only — not a substitute for professional advice</div>
+  </div>
+</main>
+
+<script>
+  let currentUser = null;
+  let currentSessionId = null;
+
+  // ── Init ──────────────────────────────────────────────────────
+  async function init() {
+    const res = await fetch('/api/me');
+    const data = await res.json();
+    currentUser = data.user;
+
+    if (currentUser) {
+      showLoggedInUI();
+      loadSessions();
+    } else {
+      showGuestUI();
+    }
+  }
+
+  function showLoggedInUI() {
+    document.getElementById('guestNotice').style.display = 'none';
+    document.getElementById('sessionSection').style.display = 'block';
+
+    const initial = currentUser.name.charAt(0).toUpperCase();
+    document.getElementById('sidebarFooter').innerHTML = `
+      <div class="user-row">
+        <div class="user-avatar">${initial}</div>
+        <div class="user-name">${currentUser.name}</div>
+        <button class="btn-logout" onclick="logout()">Sign out</button>
+      </div>
+    `;
+  }
+
+  function showGuestUI() {
+    document.getElementById('guestNotice').style.display = 'block';
+    document.getElementById('sessionSection').style.display = 'none';
+    document.getElementById('sidebarFooter').innerHTML = `
+      <a href="/" style="display:block;text-align:center;font-size:13px;color:var(--accent);padding:8px;text-decoration:none;font-weight:500;">
+        Sign in to save history →
+      </a>
+    `;
+  }
+
+  // ── Sessions ──────────────────────────────────────────────────
+  async function loadSessions() {
+    const res = await fetch('/api/sessions');
+    const data = await res.json();
+    renderSessions(data.sessions);
+  }
+
+  function renderSessions(sessions) {
+    const list = document.getElementById('sessionsList');
+    if (!sessions.length) {
+      list.innerHTML = '<div style="padding:12px;font-size:12px;color:var(--muted);text-align:center">No chats yet</div>';
+      return;
+    }
+    list.innerHTML = sessions.map(s => `
+      <div class="session-item ${s.id === currentSessionId ? 'active' : ''}"
+           onclick="loadSession(${s.id})"
+           id="session-${s.id}">
+        <span class="session-title">${escapeHtml(s.title)}</span>
+        <button class="session-del" onclick="deleteSession(event, ${s.id})">✕</button>
+      </div>
+    `).join('');
+  }
+
+  async function loadSession(sessionId) {
+    currentSessionId = sessionId;
+
+    // update active state
+    document.querySelectorAll('.session-item').forEach(el => el.classList.remove('active'));
+    const el = document.getElementById(`session-${sessionId}`);
+    if (el) el.classList.add('active');
+
+    // load messages
+    const res = await fetch(`/api/sessions/${sessionId}/messages`);
+    const data = await res.json();
+
+    clearMessages();
+    data.messages.forEach(msg => {
+      const sources = msg.sources ? JSON.parse(msg.sources) : [];
+      appendMessage(msg.role, msg.content, sources);
+    });
+  }
+
+  async function deleteSession(e, sessionId) {
+    e.stopPropagation();
+    await fetch(`/api/sessions/${sessionId}`, { method: 'DELETE' });
+    if (currentSessionId === sessionId) {
+      newChat();
+    }
+    loadSessions();
+  }
+
+  function newChat() {
+    currentSessionId = null;
+    clearMessages();
+    document.querySelectorAll('.session-item').forEach(el => el.classList.remove('active'));
+  }
+
+  // ── Chat ──────────────────────────────────────────────────────
+  function handleKey(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  }
+
+  function autoResize(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+  }
+
+  function sendSuggestion(btn) {
+    document.getElementById('queryInput').value = btn.textContent;
+    sendMessage();
+  }
+
+  async function sendMessage() {
+    const input = document.getElementById('queryInput');
+    const query = input.value.trim();
+    if (!query) return;
+
+    input.value = '';
+    input.style.height = 'auto';
+    document.getElementById('sendBtn').disabled = true;
+
+    // hide empty state
+    document.getElementById('emptyState').style.display = 'none';
+
+    // show user message
+    appendMessage('user', query, []);
+
+    // show typing indicator
+    const typingId = showTyping();
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: query,
+          session_id: currentSessionId
+        })
+      });
+
+      const data = await res.json();
+      removeTyping(typingId);
+
+      if (!res.ok) {
+        appendMessage('assistant', 'Sorry, something went wrong. Please try again.', []);
+        return;
+      }
+
+      // update session id
+      if (data.session_id && !currentSessionId) {
+        currentSessionId = data.session_id;
+        if (currentUser) loadSessions();
+      }
+
+      appendMessage('assistant', data.answer, data.sources || []);
+
+    } catch (err) {
+      removeTyping(typingId);
+      appendMessage('assistant', 'Connection error. Please try again.', []);
+    } finally {
+      document.getElementById('sendBtn').disabled = false;
+    }
+  }
+
+  function appendMessage(role, content, sources) {
+    const area = document.getElementById('messagesArea');
+
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `msg ${role}`;
+
+    const initial = role === 'assistant' ? '✚' : (currentUser ? currentUser.name.charAt(0) : 'G');
+
+    const sourcesHtml = sources && sources.length > 0 ? `
+      <button class="sources-toggle" onclick="toggleSources(this)">
+        📎 ${sources.length} source${sources.length > 1 ? 's' : ''}
+      </button>
+      <div class="sources-panel">
+        ${sources.map(s => `
+          <div class="source-chip">
+            <div class="source-chip-header">📄 ${escapeHtml(s.source)} · Page ${s.page}</div>
+            <div>${escapeHtml(s.preview)}</div>
+          </div>
+        `).join('')}
+      </div>
+    ` : '';
+
+    msgDiv.innerHTML = `
+      <div class="msg-avatar">${initial}</div>
+      <div class="msg-content">
+        <div class="msg-bubble">${formatText(content)}</div>
+        ${sourcesHtml}
+      </div>
+    `;
+
+    area.appendChild(msgDiv);
+    area.scrollTop = area.scrollHeight;
+  }
+
+  function showTyping() {
+    const area = document.getElementById('messagesArea');
+    const id = 'typing-' + Date.now();
+    const div = document.createElement('div');
+    div.className = 'msg assistant';
+    div.id = id;
+    div.innerHTML = `
+      <div class="msg-avatar">✚</div>
+      <div class="msg-content">
+        <div class="typing-indicator">
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+          <div class="typing-dot"></div>
+        </div>
+      </div>
+    `;
+    area.appendChild(div);
+    area.scrollTop = area.scrollHeight;
+    return id;
+  }
+
+  function removeTyping(id) {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  }
+
+  function clearMessages() {
+    const area = document.getElementById('messagesArea');
+    area.innerHTML = `
+      <div class="empty-state" id="emptyState">
+        <div class="empty-icon">🩺</div>
+        <div class="empty-title">Ask me anything medical</div>
+        <div class="empty-sub">I'll search the medical knowledge base and give you a structured, evidence-based answer with citations.</div>
+        <div class="suggestions">
+          <button class="suggestion" onclick="sendSuggestion(this)">What are the symptoms and treatment of hypertension?</button>
+          <button class="suggestion" onclick="sendSuggestion(this)">Explain the causes and risk factors of Type 2 Diabetes</button>
+          <button class="suggestion" onclick="sendSuggestion(this)">What is the difference between Type 1 and Type 2 Diabetes?</button>
+          <button class="suggestion" onclick="sendSuggestion(this)">What are common causes of chest pain?</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function toggleSources(btn) {
+    const panel = btn.nextElementSibling;
+    panel.classList.toggle('open');
+    btn.textContent = panel.classList.contains('open')
+      ? btn.textContent.replace('📎', '🔼')
+      : btn.textContent.replace('🔼', '📎');
+  }
+
+  // ── Utils ─────────────────────────────────────────────────────
+  function formatText(text) {
+    // basic markdown-like formatting
+    return escapeHtml(text)
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br>');
+  }
+
+  function escapeHtml(text) {
+    const d = document.createElement('div');
+    d.textContent = text || '';
+    return d.innerHTML;
+  }
+
+  async function logout() {
+    await fetch('/api/logout', { method: 'POST' });
+    window.location.href = '/';
+  }
+
+  init();
+</script>
+</body>
 </html>

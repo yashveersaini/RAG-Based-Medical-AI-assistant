@@ -208,5 +208,95 @@
         "question": "What is a 'wheal and flare' reaction?",
         "ground_truth": "It is characterized by the eruption of a reddened, itching spot on the skin that develops in about 15-20 minutes after the skin test.",
         "reference_context": "A 'wheal and flare' reaction is characterized by the eruption of a reddened, itching spot on the skin. Some patients with ABPA will develop the so-called late reaction to the skin test, in which a red, sore, swollen area develops about six to eight hours after the initial reaction."
+    },
+    {
+        "question": "How does the color of a bruise change over time after an injury?",
+        "ground_truth": "A bruise starts as reddish, turns blue or purplish after one to two days, becomes green around day six, and then changes to brown or yellowish by the eighth or ninth day before returning to normal.",
+        "reference_context": "Initially, a bruise will be reddish, the color of the blood under the skin. After one to two days, the red blood cells begin to break down, and the bruise will darken to a blue or purplish color. This fades to green at about day six. Around the eighth or ninth day, the skin over the bruised area will have a brown or yellowish appearance."
+    },
+    {
+        "question": "How is brucellosis commonly transmitted to humans?",
+        "ground_truth": "Brucellosis is commonly transmitted through unpasteurized milk from infected cows or contact with discharges of cattle and goats during miscarriage.",
+        "reference_context": "In humans, brucellosis continues to be spread via unpasteurized milk obtained from infected cows or through contact with the discharges of cattle and goats during miscarriage. In areas of the world where milk is not pasteurized, for example in Latin America and the Mediterranean, the disease is still contracted by ingesting unpasteurized dairy products."
+    },
+    {
+        "question": "What are the main uses of bronchoscopy in medical diagnosis?",
+        "ground_truth": "Bronchoscopy is used to examine the airways for abnormalities, detect obstructions like tumors, and collect specimens for diagnosing cancer or infectious diseases such as tuberculosis.",
+        "reference_context": "The procedure is used to examine the mucosal surface of the airways for abnormalities that might be associated with a variety of lung diseases. Its use includes the visualization of airway obstructions such as a tumor, or the collection of specimens for the diagnosis of cancer originating in the bronchi of the lungs (bronchogenic cancer). It can also be used to collect specimens for culture to diagnose infectious diseases such as tuberculosis."
+    },
+    {
+        "question": "Why do people with asthma have difficulty breathing out?",
+        "ground_truth": "People with asthma have difficulty breathing out because narrowed airways block airflow, causing air to become trapped in the lungs.",
+        "reference_context": "The problem comes when the person with asthma tries to breathe out. The air can no longer get past the blockage, and it remains trapped in the lungs. The person can then only take shallow breaths."
+    },
+    {
+        "question": "What are the advantages of ultrasound-guided biopsies compared to surgical biopsies?",
+        "ground_truth": "Ultrasound-guided biopsies are less traumatic, more comfortable, accurate in determining cancer spread, and generally less costly than surgical biopsies.",
+        "reference_context": "Patients usually find that the procedure is less traumatic and more comfortable than surgical biopsies. Ultrasound is known for its accuracy in determining how far a cancerous growth extends into the surrounding tissue in lesions that cannot be felt. Biopsies guided by ultrasound are generally less costly than surgical biopsies."
+    },
+    {
+        "question": "What are the main steps involved in breast reconstruction after surgery?",
+        "ground_truth": "Breast reconstruction involves first creating a breast mound using implants or tissue from other parts of the body, then achieving symmetry with the opposite breast, and finally reconstructing the nipple and areolar complex after swelling has reduced.",
+        "reference_context": "The first step is to form a structure called a breast mound. This can be accomplished using artificial materials called breast implants, or by using tissues from other parts of the woman’s body. The second step involves creating a balance between the newly constructed breast and the breast on the opposite side. The nipple and areolar complex (darker area around the nipple) are recreated."
+    },
+    {
+        "question": "Why is it important to evaluate breast lumps even if they may not be cancerous?",
+        "ground_truth": "It is important to evaluate breast lumps because fibrocystic changes are common and can produce symptoms similar to breast cancer, including lumps, pain, and swelling, making proper diagnosis essential to rule out malignancy.",
+        "reference_context": "Complete diagnostic evaluation of any significant breast abnormality is mandatory because though women commonly develop fibrocystic changes, breast cancer is common also, and the signs and symptoms of fibrocystic changes overlap with those of breast cancer."
+    },
+    {
+        "question": "How can therapy help patients recovering from brain tumor surgery?",
+        "ground_truth": "Therapy helps patients recover by teaching new ways to perform daily activities and improving functions such as balance, speech, thinking, and swallowing, which may be affected after surgery.",
+        "reference_context": "Occupational therapy can teach patients and their families new ways to approach daily tasks. Physical therapy can benefit patients who have difficulty keeping their balance, expressing their thoughts, speaking, or swallowing."
+    },
+    {
+        "question": "What are key preventive measures to avoid botulism?",
+        "ground_truth": "Preventing botulism relies on strict food safety practices, including discarding spoiled food, using sterile equipment during home canning, following proper guidelines, and avoiding feeding honey to infants under 12 months due to the risk of spores.",
+        "reference_context": "Food safety is the surest prevention for botulism. Botulinum toxin cannot be seen, smelled, or tasted, so the wisest course is to discard any food that seems spoiled without tasting it. One concrete preventative is to never feed honey to infants younger than 12 months since it is one known source of botulism spores."
+    },
+    {
+        "question": "How do digital x-rays differ from conventional x-rays?",
+        "ground_truth": "Digital x-rays differ from conventional x-rays in that they use similar equipment to capture images, but the images are stored electronically on a computer system, allowing radiologists to view, store, and share them digitally instead of using film.",
+        "reference_context": "Digital x rays are a new type of x ray in which conventional equipment is used to take the x ray but the image is produced via computer. In a digital x ray, the image is created on a reusable plate. After being read by a laser reader, the information is sent in digital form to a storage unit connected to a computer network from which the radiologist reads the x ray."
+    },
+    {
+        "question": "Why is HLA matching important in organ or bone marrow transplantation?",
+        "ground_truth": "HLA matching is important because differences in HLA types between individuals can make transplantation unsuccessful, while closer matches—especially among siblings or identical twins—improve compatibility and transplant success.",
+        "reference_context": "For example, HLA–A from one individual may be similar to, but not the same as, HLA–A in another individual; such a situation can render a transplant from one to the other impossible. HLA matching is more likely if the donor and recipient are related, particularly if they are siblings; however, an unrelated donor may be a potential match. Only in rare cases is matching HLA types between two people not an issue: if the recipient has an identical twin."
+    },
+    {
+        "question": "What causes osteoporosis and why is it more common in women?",
+        "ground_truth": "Osteoporosis occurs when the balance between bone breakdown and formation is disrupted, leading to porous and weak bones, and it is more common in women due to lower bone mass, longer lifespan, lower calcium intake, and dependence on estrogen for bone strength.",
+        "reference_context": "Normally, there is a balance between the breakdown of old bone and its replacement with new bone. But when something goes wrong with the process, bone disorders may result. In osteoporosis, the inside of the bones become porous and thin. Osteoporosis is four times more common in women than in men. This is because women have less bone mass than men, tend to live longer and take in less calcium, and need the female hormone estrogen to keep their bones strong."
+    },
+    {
+        "question": "How is a drill biopsy of bone performed?",
+        "ground_truth": "A drill biopsy involves cleaning and numbing the skin with a local anesthetic, inserting a needle into the bone, and rotating it to extract a core sample, which is then sent to a laboratory for microscopic examination.",
+        "reference_context": "After the skin covering the bone has been cleansed with an antiseptic and shaved, the patient is given a local anesthetic. The surgeon turns the needle in a half-circle to extract a sample from the core, or innermost part, of the bone. The sample is then sent to a laboratory, where it is examined under a microscope."
+    },
+    {
+        "question": "What is the process of collecting blood for typing and crossmatching tests?",
+        "ground_truth": "Blood is collected by tying a tourniquet, inserting a needle into a vein in the inner elbow, and using vacuum action to draw about 10 mL of blood into a tube, usually within a few minutes.",
+        "reference_context": "a healthcare worker ties a tourniquet above the patient’s elbow, locates a vein in the inner elbow region, and inserts a needle into that vein. Vacuum action draws the blood through the needle into an attached tube. Collection of the sample takes only a few minutes."
+    },
+    {
+        "question": "Where are blood typing and crossmatching tests performed and how are they regulated?",
+        "ground_truth": "These tests are performed in blood bank laboratories by trained technologists, often in facilities like hospitals or organizations such as the American Red Cross, and are regulated and inspected by authorities like the FDA.",
+        "reference_context": "Blood typing and crossmatching tests are performed in a blood bank laboratory by technologists trained in blood bank and transfusion services. Blood bank laboratories are usually located in facilities, such as those operated by the American Red Cross, as well as in facilities, such as most hospitals. These laboratories are regulated by the United States Food and Drug Administration (FDA)."
+    },
+    {
+        "question": "How is the safety of donated blood ensured before transfusion?",
+        "ground_truth": "Blood safety is ensured through a multi-step process that includes donor education, health history screening, physical examination, possible donor deferral, and extensive testing of all donated blood before use.",
+        "reference_context": "a multi tiered process of donor screening and deferral is employed. This involves donor education, taking a detailed health history of each prospective donor, and giving potential donors a simple physical examination. All donated blood is extensively tested before being used."
+    },
+    {
+        "question": "What are the symptoms and progression of blastomycosis in the lungs and skin?",
+        "ground_truth": "Blastomycosis begins with lung infection causing symptoms like cough, fever, and fatigue, and may progress to lung lesions or spread to the skin, forming blisters and abscesses that may not heal.",
+        "reference_context": "In the early stages, symptoms may include a dry cough, fever, heavy sweating, fatigue, and a general feeling of ill health. As the disease progresses, small lesions form in the lungs causing the air sacs deep within the lungs (alveoli) to break down and form small cavities. Bumps develop on the skin, gradually becoming small, white, crusted blisters filled with pus."
+    },
+    {
+        "question": "What surgical options are available for treating bladder cancer depending on its stage?",
+        "ground_truth": "Surgical options depend on cancer stage and include transurethral resection for small localized tumors, partial cystectomy for limited invasion, and radical cystectomy for large or widespread cancer, sometimes removing nearby organs.",
+        "reference_context": "If the tumor is localized to a small area and has not spread to the inner layers of the bladder, then the surgery is done without cutting open the abdomen. This procedure is called a transurethral resection (TUR). Cancer that is not very large can be removed by partial cystectomy. If the cancer is large or is present in more than one area of the bladder, a radical cystectomy is done."
     }
 ]
