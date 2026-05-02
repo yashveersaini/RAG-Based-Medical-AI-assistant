@@ -64,10 +64,10 @@ User Query
 | **Vector Store** | Pinecone (Serverless, cosine similarity) |
 | **Sparse Retrieval** | BM25 via `langchain-community` |
 | **Hybrid Fusion** | EnsembleRetriever (Reciprocal Rank Fusion) |
-| **Reranker** | FlashrankRerank / Cohere Rerank v3 |
+| **Reranker** | Cohere Rerank v3 |
 | **Backend** | FastAPI (async) |
-| **Frontend** | HTML, CSS, JavaScript (no framework) |
-| **Database** | PostgreSQL (raw psycopg2) |
+| **Frontend** | HTML, CSS, JavaScript |
+| **Database** | PostgreSQL |
 | **Auth** | JWT (PyJWT) + bcrypt |
 | **Evaluation** | RAGAS (faithfulness, answer relevancy, context precision, context recall) |
 
@@ -167,7 +167,7 @@ medassist/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yashveersaini/medassist.git
+git clone https://github.com/yashveersaini/RAG-Based-Medical-AI-assistant.git
 cd medassist
 ```
 
@@ -183,10 +183,6 @@ source .venv/bin/activate     # Linux / Mac
 pip install -r requirements.txt
 ```
 
-### 4. Configure environment variables
-```bash
-cp .env.example .env
-```
 Edit `.env`:
 ```env
 GEMINI_API_KEY=your_gemini_key
@@ -199,7 +195,6 @@ SECRET_KEY=your-long-random-secret
 ### 5. Set up PostgreSQL
 ```bash
 createdb medassist
-# tables are created automatically on first startup via init_db()
 ```
 
 ### 6. Index your documents
@@ -210,7 +205,7 @@ python store_index.py
 
 ### 7. Start the server
 ```bash
-uvicorn main:app --reload --port 8080
+uvicorn main:app --reload 
 ```
 
 Open: `http://localhost:8080`
